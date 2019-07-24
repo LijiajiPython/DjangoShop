@@ -1,0 +1,47 @@
+{% extends "appshop/base.html" %}
+{% load SetTime %}
+{% block title %}
+{{ good.goods_name }}商品详情
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <a href="/AppShop/list_goods/" class="btn btn-primary">返回商品列表</a>
+        </div>
+{#<div class="d-sm-flex align-items-center justify-content-between mb-4">#}
+{#          <h1 class="h3 mb-4 text-gray-800">商品管理：{{ good.goods_name }}</h1>#}
+{#</div>#}
+<table class="table">
+    <tr>
+        <td rowspan="3" style="text-align: center"><img src="/static/{{ good.goods_image }}" alt="" style="height:200px;width:200px;"></td>
+        <th>商品名称</th>
+        <td colspan="3">{{ good.goods_name }}</td>
+    </tr>
+    <tr>
+        <th>商品价格</th>
+        <td>{{ good.goods_price }}</td>
+        <th>商品数量</th>
+        <td>{{ good.goods_number }}</td>
+    </tr>
+    <tr>
+        <th>生产日期</th>
+        <td>{{ good.goods_date | setTime }}</td>
+        <th>保质期</th>
+        <td>{{ good.goods_safeDate }}天</td>
+    </tr>
+    <tr>
+        <th colspan="5" style="text-align: center">商品描述</th>
+    </tr>
+<tr>
+    <td colspan="5">{{ good.goods_description | safe }}</td>
+</tr>
+    
+</table>
+
+        <a href="/AppShop/edit_goods/{{ good.id }}" class="btn btn-primary btn-block">修改内容</a>
+
+{% endblock %}

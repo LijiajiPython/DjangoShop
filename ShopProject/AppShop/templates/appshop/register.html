@@ -36,36 +36,16 @@
               </div>
               <form class="user" method="post">
                   {% csrf_token %}
-{#                <div class="form-group row">#}
-{#                  <div class="col-sm-6 mb-3 mb-sm-0">#}
-{#                    <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">#}
-{#                  </div>#}
-{#                  <div class="col-sm-6">#}
-{#                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">#}
-{#                  </div>#}
-{#                </div>#}
+
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" name="username" placeholder="用户名">
+                  <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="用户名">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-user" name="password" placeholder="密码">
+                  <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="密码">
                 </div>
-{#                <div class="form-group row">#}
-{#                  <div class="col-sm-6 mb-3 mb-sm-0">#}
-{#                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">#}
-{#                  </div>#}
-{#                  <div class="col-sm-6">#}
-{#                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">#}
-{#                  </div>#}
-{#                </div>#}
-                <input type="submit" class="btn btn-primary btn-user btn-block" value="注册">
-{#                <hr>#}
-{#                <a href="index.html" class="btn btn-google btn-user btn-block">#}
-{#                  <i class="fab fa-google fa-fw"></i> Register with Google#}
-{#                </a>#}
-{#                <a href="index.html" class="btn btn-facebook btn-user btn-block">#}
-{#                  <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook#}
-{#                </a>#}
+
+                <input type="submit" id="submit" class="btn btn-primary btn-user btn-block" value="注册">
+
               </form>
               <hr>
               <div class="text-center">
@@ -91,7 +71,33 @@
 
   <!-- Custom scripts for all pages-->
   <script src="/static/appshop/js/sb-admin-2.min.js"></script>
+  <script>
+      $("#username").blur(
+          function () {
+              var username=$("#username").val();
+              var url="/AppShop/registerajax/?username="+username;
+              $.ajax(
+                  {
+                      url:url,
+                      type:"get",
+                      data:"",
+                      success:function(data){
+                          var content = data.content;
+                          var status = data.status;
+                          alert(content);
+                          if(status==="error"){
+                              $("#submit").attr("disabled",true)
+                          }
+                          else{
+                              $("#submit").attr("disabled",false)
+                          }
+                      }
 
+                  }
+              )
+          }
+      )
+  </script>
 </body>
 
 </html>

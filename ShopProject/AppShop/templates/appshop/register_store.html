@@ -1,0 +1,52 @@
+{% extends "appshop/base.html" %}
+
+{% block title %}
+店铺注册
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block content %}
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-4 text-gray-800">店铺注册</h1>
+     </div>
+    <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+     <div class="form-group">
+        <input type="text" class="form-control form-control-user" id="store_name" name="store_name" placeholder="店铺名称">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user" id="store_address" name="store_address" placeholder="店铺地址">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user" id="store_descripton" name="store_descripton" placeholder="店铺描述">
+    </div>
+    <div class="form-group">
+        <input type="file" class="form-control form-control-user" id="store_logo" name="store_logo" placeholder="店铺logo">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user" id="store_phone" name="store_phone" placeholder="店铺电话">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user" id="store_money" name="store_money" placeholder="店铺注册资金">
+    </div>
+    <div class="form-group">
+            <select name="store_type" id="store_type" class="form-control form-control-user"  multiple>
+            {% for t in typeList %}
+                <option value="{{ t.id }}">{{ t.store_type }}</option>
+            {% endfor %}
+            </select>
+{#        <input type="" class="form-control form-control-user" id="type" name="type" placeholder="店铺类型">#}
+    </div>
+    <div class="form-group">
+{#        <input type="hidden" class="form-control form-control-user" id="user_id" name="user_id" placeholder="店铺主人" value="{{ request.COOKIES.userid }}">#}
+    </div>
+    <input type="submit" id="submit" class="btn btn-primary btn-user btn-block" value="注册">
+    </form>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

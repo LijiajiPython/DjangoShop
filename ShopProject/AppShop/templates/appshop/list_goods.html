@@ -1,0 +1,64 @@
+{% extends "appshop/base.html" %}
+{% load SetTime %}
+{% block title %}
+商品列表
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <a href="/AppShop/add_goods/" class="btn btn-primary">添加商品</a>
+    </div>
+
+<table class="table table-bordered">
+<thead>
+<tr>
+    <th>商品名称</th>
+    <th>商品价格</th>
+    <th>商品数量</th>
+    <th>生产日期</th>
+    <th>保质期</th>
+    <th>操作</th>
+</tr>
+</thead>
+<tbody>
+{% for goods in page %}
+
+    <form action="/AppShop/edit_price/" method="post">
+    {% csrf_token %}
+        <tr>
+            <td><a href="/AppShop/goods/{{ goods.id }}">{{ goods.goods_name }}</a></td>
+            <td><input type="text" name="goods_price" value="{{ goods.goods_price }}"></td>
+            <td>{{ goods.goods_number }}</td>
+            <td>{{ goods.goods_date | setTime }}</td>
+            <td>{{ goods.goods_safeDate }}天</td>
+            <td>
+                <input type="hidden" name="goods_id" value="{{ goods.id }}">
+                <input class="btn btn-info" type="submit" value="修改">
+                <a href="" class="btn btn-warning">下架</a>
+                <a href="" class="btn btn-danger">销毁</a>
+            </td>
+        </tr>
+    </form>
+{% endfor %}
+
+</tbody>
+</table>
+<div class="dataTables_paginate paging_simple_numbers">
+<ul class="pagination">
+{% for i in page_list %}
+    <li class="paginate_button page-item">
+        <a class="page-link" href="?keywords={{ keywords }}&page_num={{ i }}">{{ i }}</a>
+    </li>
+{% endfor %}
+</ul>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

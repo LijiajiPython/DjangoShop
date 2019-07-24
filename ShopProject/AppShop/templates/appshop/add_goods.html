@@ -1,0 +1,49 @@
+{% extends "appshop/base.html" %}
+
+{% block title %}
+商品添加
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block content %}
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-4 text-gray-800">店铺注册</h1>
+     </div>
+    <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+     <div class="form-group">
+        <input type="text" class="form-control form-control-user" id="goods_name" name="goods_name" placeholder="商品名称">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user" id="goods_price" name="goods_price" placeholder="商品价格">
+    </div>
+    <div class="form-group">
+        <input type="file" class="form-control form-control-user" id="goods_image" name="goods_image" placeholder="商品图片">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user" id="goods_number" name="goods_number" placeholder="商品数量库存">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user" id="goods_description" name="goods_description" placeholder="商品描述">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user" id="goods_date" name="goods_date" placeholder="出厂日期">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user" id="goods_safeDate" name="goods_safeDate" placeholder="保质期（天）">
+    </div>
+{#    <div class="form-group">#}
+{#        <input type="hidden" class="form-control form-control-user" id="store_id" name="store_id" placeholder="商品店铺" value="1">#}
+{#    </div>#}
+    <div class="form-group">
+    </div>
+    <input type="submit" id="submit" class="btn btn-primary btn-user btn-block" value="注册">
+    </form>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
