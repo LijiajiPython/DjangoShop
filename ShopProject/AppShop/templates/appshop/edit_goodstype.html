@@ -1,0 +1,46 @@
+{% extends "appshop/base.html" %}
+
+{% block title %}
+    商品类型列表页
+{% endblock %}
+
+{#{% block label %}#}
+
+{#{% endblock %}#}
+
+{% block content %}
+{#    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">#}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">添加类型</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <form method="post" class="form" enctype="multipart/form-data">
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control form-control-user" placeholder="类型名称" type="text" name="name" value="{{ goodstype.goodstype_name }}">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-user " placeholder="类型描述" type="text" name="description" value="{{ goodstype.goodstype_description }}">
+                    </div>
+                    <div class="form-group">
+                        <img src="/static/{{ goodstype.goodstype_image }}" alt="">
+                        <input class="form-control form-control-user" placeholder="类型图片" type="file" name="picture">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input class="form-control form-control-user" placeholder="类型图片" type="hidden" name="id" value="{{ goodstype_id }}">
+                    <button type="submit" class="btn btn-primary">保存类型</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+{#</div>#}
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,113 @@
+{% extends "appshop/base.html" %}
+
+{% block title %}
+    商品类型列表页
+{% endblock %}
+
+{#{% block label %}#}
+
+{#{% endblock %}#}
+
+{% block content %}
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <button class="btn btn-info" data-toggle="modal" data-target="#myModal">添加商品类型</button>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+               <th style="text-align: center;">商品类型名称</th>
+               <th style="text-align: center;">商品类型价格</th>
+               <th style="text-align: center;">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for goods_type in goods_type_list %}
+                <tr>
+                    <td style="text-align: center;">{{ goods_type.goodstype_name }}</td>
+                    <td style="text-align: center;">{{ goods_type.goodstype_description }}</td>
+                    <td style="text-align: center;">
+                        <button class="btn btn-warning" data-toggle="modal" data-target="#myModal{{ goods_type.id }}">修改</button>
+{#                        <a class="btn btn-warning" href="/AppShop/edit_goodstype/?id={{ goods_type.id }}">修改</a>#}
+                        <a class="btn btn-danger" href="/AppShop/delete_goodstype/?id={{ goods_type.id }}">删除</a>
+                    </td>
+                </tr>
+
+
+                <div class="modal fade" id="myModal{{ goods_type.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">修改：{{ goods_type.goodstype_name }}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <form method="post" class="form" enctype="multipart/form-data" action="/AppShop/edit_goodstype/">
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control form-control-user" placeholder="类型名称" type="text" name="name" value="{{ goods_type.goodstype_name }}">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-user " placeholder="类型描述" type="text" name="description" value="{{ goods_type.goodstype_description }}">
+                    </div>
+                    <div class="form-group">
+                        <img src="/static/{{ goods_type.goodstype_image }}" alt="" style="width: 200px;height:300px;">
+                        <input class="form-control form-control-user" placeholder="类型图片" type="file" name="picture" value="{{ goods_type.goodstype_name }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input class="form-control form-control-user" placeholder="类型id" type="hidden" name="id" value="{{ goods_type.id }}">
+                    <button type="submit" class="btn btn-primary">保存类型</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div>
+                </div>
+
+
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="dataTables_paginate paging_simple_numbers">
+        <ul class="pagination">
+            {% for p in page_range %}
+            <li class="paginate_button page-item">
+                <a class="page-link" href="?keywords={{ keywords }}&page_num={{ p }}">{{ p }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">添加类型</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <form method="post" class="form" enctype="multipart/form-data">
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control form-control-user" placeholder="类型名称" type="text" name="name">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-user " placeholder="类型描述" type="text" name="description">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-user" placeholder="类型图片" type="file" name="picture">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">保存类型</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+{% endblock %}
+
+
+
+
+

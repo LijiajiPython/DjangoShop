@@ -10,7 +10,7 @@
 
 {% block content %}
      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-4 text-gray-800">店铺注册</h1>
+          <h1 class="h3 mb-4 text-gray-800">商品注册</h1>
      </div>
     <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -39,6 +39,12 @@
 {#        <input type="hidden" class="form-control form-control-user" id="store_id" name="store_id" placeholder="商品店铺" value="1">#}
 {#    </div>#}
     <div class="form-group">
+        <select name="goods_type" id="" class="form-control form-control-user">
+            {% for t in goodstypelist %}
+                <option value="{{ t.id }}">{{ t.goodstype_name }}</option>
+            {% endfor %}
+        </select>
+{#        <selec type="text" class="form-control form-control-user" id="goods_safeDate" name="goods_safeDate" placeholder="保质期（天）">#}
     </div>
     <input type="submit" id="submit" class="btn btn-primary btn-user btn-block" value="注册">
     </form>

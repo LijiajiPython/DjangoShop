@@ -11,8 +11,8 @@
 {% block content %}
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <a href="/AppShop/add_goods/" class="btn btn-primary">添加商品</a>
+        <a href="/AppShop/list_goodstype/" class="btn btn-info">添加商品类型</a>
     </div>
-
 <table class="table table-bordered">
 <thead>
 <tr>
@@ -37,9 +37,14 @@
             <td>{{ goods.goods_safeDate }}天</td>
             <td>
                 <input type="hidden" name="goods_id" value="{{ goods.id }}">
+                <input type="hidden" name="goods_state" value="{{ state }}">
                 <input class="btn btn-info" type="submit" value="修改">
-                <a href="" class="btn btn-warning">下架</a>
-                <a href="" class="btn btn-danger">销毁</a>
+                {% ifequal state_num 1 %}
+                <a href="/AppShop/set_goods/under/?id={{ goods.id }}" class="btn btn-warning">下架</a>
+                {% else %}
+                <a href="/AppShop/set_goods/up/?id={{ goods.id }}" class="btn btn-warning">上架</a>
+                {% endifequal %}
+                <a href="/AppShop/set_goods/delete/?id={{ goods.id }}" class="btn btn-danger">销毁</a>
             </td>
         </tr>
     </form>
