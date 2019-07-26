@@ -8,4 +8,8 @@ urlpatterns = [
     path("register/",register),
     path("login/",login),
     path("logout/",logout),
+    path("buyer_list_goods/",buyer_list_goods),
+    path("ali_pay/",ali_pay),
+    path("pay_result/",pay_result),
+    path("buyer_list_goods/",buyer_list_goods),
 ]

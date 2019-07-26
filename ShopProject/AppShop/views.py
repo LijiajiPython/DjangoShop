@@ -321,3 +321,5 @@ def edit_goodstype(request):
             goodstype.goodstype_image = image
             goodstype.save()
     return HttpResponseRedirect("/AppShop/list_goodstype")
+
+
