@@ -6,6 +6,10 @@
 
 {% block content %}
     <h1>恭喜您支付成功</h1>
+    {% for good in goods %}
+        <p>购买物品：{{ good.goods_name }}</p>
+        <p>购买数量：{{ good.goods_number }}</p>
+    {% endfor %}
     <p>支付订单：{{ request.GET.out_trade_no }}</p>
     <p>支付金额：{{ request.GET.total_amount }}</p>
     <p>支付时间：{{ request.GET.timestamp }}</p>

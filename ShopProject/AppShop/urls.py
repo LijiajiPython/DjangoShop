@@ -19,5 +19,9 @@ urlpatterns = [
     path("list_goodstype/",list_goodstype),
     path("delete_goodstype/",delete_goodstype),
     path("edit_goodstype/",edit_goodstype),
+    path("order_list/",order_list),
+    path("hassend_list/",hassend_list),
+    path("send/",send),
+    path("delorder/",delorder),
 
 ]

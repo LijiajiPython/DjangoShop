@@ -42,7 +42,7 @@
 			<ul class="goods_type_list clearfix">
                 {% for goods in goods_list %}
 				<li>
-					<a href="detail.html"><img src="/static/{{ goods.goods_image }}"></a>
+					<a href="/Buyer/detail/?goods_id={{ goods.id }}"><img src="/static/{{ goods.goods_image }}"></a>
 					<h4><a href="detail.html">{{ goods.goods_name }}</a></h4>
 					<div class="operate">
 						<span class="prize">${{ goods.goods_price }}</span>

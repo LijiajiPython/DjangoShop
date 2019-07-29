@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse
 
 from AppShop.models import *
+from Buyer.models import *
 # Create your views here.
 
 def loginVilid(fun):
@@ -160,11 +161,7 @@ def add_goods(request):
         goods.goods_date=goods_date
         goods.goods_safeDate=goods_safeDate
         goods.goodstype_id_id=goods_type
-        goods.save()
-        goods.store_id.add(
-            Store.objects.get(id=int(store_id))
-        )
-        print(Store.objects.get(id=int(store_id)))
+        goods.store_id=Store.objects.get(id=int(store_id))
         goods.save()
         return HttpResponseRedirect("/AppShop/list_goods/up/")
     return render(request,"appshop/add_goods.html",locals())
@@ -323,3 +320,25 @@ def edit_goodstype(request):
     return HttpResponseRedirect("/AppShop/list_goodstype")
 
 
+def order_list(request):
+    store_id=request.COOKIES.get("is_store")
+    order_list=OrderDetail.objects.filter(goods_store=store_id,goods_status=2)
+    return render(request,"appshop/order_list.html",locals())
+
+def send(request):
+    ordergoods_id = request.GET.get("id")
+    ordergoods = OrderDetail.objects.get(id=ordergoods_id)
+    ordergoods.goods_status=3
+    ordergoods.save()
+    return HttpResponseRedirect("/AppShop/order_list")
+
+def delorder(request):
+    ordergoods_id = request.GET.get("id")
+    ordergoods = OrderDetail.objects.get(id=ordergoods_id)
+    ordergoods.delete()
+    return HttpResponseRedirect("/AppShop/order_list")
+
+def hassend_list(request):
+    store_id = request.COOKIES.get("is_store")
+    order_list = OrderDetail.objects.filter(goods_store=store_id, goods_status=3)
+    return render(request,"appshop/hassend_list.html",locals())

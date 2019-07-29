@@ -1,0 +1,52 @@
+{% extends "appshop/base.html" %}
+{% load SetTime %}
+{% block title %}
+订单列表
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block content %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+               <th>订单编号</th>
+               <th>订单商品</th>
+               <th>商品数量</th>
+               <th>订单金额</th>
+               <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in order_list %}
+                <tr>
+                    <td>{{ order.order_id.order_id }}</td>
+                    <td>{{ order.goods_name }}</td>
+                    <td>{{ order.goods_number }}</td>
+                    <td>{{ order.goods_total }}</td>
+                    <td>
+                        <a class="btn btn-primary" name="id" href="/AppShop/send/?id={{ order.id }}">确认发货</a>
+                        <a class="btn btn-danger" name="id" href="/AppShop/delorder/?id={{ order.id }}">拒绝发货</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="dataTables_paginate paging_simple_numbers">
+        <ul class="pagination">
+            {% for p in page_range %}
+            <li class="paginate_button page-item">
+                <a class="page-link" href="?keywords={{ keywords }}&page_num={{ p }}">{{ p }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

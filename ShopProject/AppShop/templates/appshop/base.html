@@ -100,6 +100,21 @@
           </div>
         </div>
       </li>
+
+          <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTHREE" aria-expanded="true" aria-controls="collapseTHREE">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>订单管理</span>
+        </a>
+        <div id="collapseTHREE" class="collapse" aria-labelledby="headingTHREE" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">操作:</h6>
+            <a class="collapse-item" href="/AppShop/order_list/">未发货</a>
+            <a class="collapse-item" href="/AppShop/hassend_list/">已发货</a>
+{#            <a class="collapse-item" href="/AppShop/list_goods/down/">未发货</a>#}
+          </div>
+        </div>
+      </li>
     {% elif is_store %}
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">

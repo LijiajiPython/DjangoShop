@@ -61,13 +61,11 @@
 			<div class="goods_banner fl"><img src="/static/{{ types.goodstype_image }}"></div>
 			<ul class="goods_list fl">
                 {% for goods in types.goods_set.all|slice:":4" %}
-
 				<li>
-					<h4><a href="#">{{ goods.goods_name }}</a></h4>
-					<a href="#"><img src="/static/{{ goods.goods_image }}"></a>
+					<h4><a href="/Buyer/detail/?goods_id={{ goods.id }}">{{ goods.goods_name }}</a></h4>
+					<a href="/Buyer/detail/?goods_id={{ goods.id }}"><img src="/static/{{ goods.goods_image }}"></a>
 					<div class="prize">¥ {{ goods.goods_price }}</div>
 				</li>
-
                 {% endfor %}
 {#    {% else %}#}
             {% endif %}

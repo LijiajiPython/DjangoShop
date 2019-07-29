@@ -41,8 +41,9 @@ class Goods(models.Model):
     goods_date = models.DateField(verbose_name="出厂日期")
     goods_safeDate = models.IntegerField(verbose_name="保质期")
     goods_under = models.IntegerField(verbose_name="是否下架",default=1)
-    store_id = models.ManyToManyField(to=Store,verbose_name="商品店铺")
+    # store_id = models.ManyToManyField(to=Store,verbose_name="商品店铺")
     goodstype_id = models.ForeignKey(to=GoodsType,verbose_name="所属商品种类",on_delete=models.CASCADE)
+    store_id = models.ForeignKey(verbose_name="商品店铺",to=Store,on_delete=models.CASCADE)
 
 class GoodsImg(models.Model):
     img_address = models.ImageField(upload_to="appshop/img",verbose_name="图片地址")
